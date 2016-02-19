@@ -221,6 +221,12 @@ func NewClient(host, accessId, accessKey string, channum int) *Client {
 	return &client
 }
 
+func NewClientPro(host, accessId, accessKey string, channum int, httpClient *http.Client) *Client {
+	client := NewClient(host, accessId, accessKey, channum)
+	client.HttpClient = httpClient
+	return client
+}
+
 func (c *Client) signHeader(req *http.Request, canonicalizedResource string) {
 	//format x-oss-
 	tmpParams := make(map[string]string)
